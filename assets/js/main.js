@@ -2,8 +2,10 @@ const grille = document.querySelector("#grille");
 const reset = document.querySelector("#reset");
 const start = document.querySelector("#start");
 const tour = document.querySelector("#tour");
+// constantes pour nos elements HTML
 
 let nombreTour = 0;
+// variable pour afficher le nombre de tours
 
 const genererTableau = () => {
     let tableau = "<table>\n";
@@ -17,6 +19,9 @@ const genererTableau = () => {
     tableau += "</table>";
     return tableau;
 };
+
+//fonction pour créer notre grille
+
 
 const verifNoir = (cell) => {
     const rowIndex = cell.parentElement.rowIndex;
@@ -46,6 +51,9 @@ const verifNoir = (cell) => {
     }
 };
 
+//fonction pour vérifier les cellules voisines des cases noires
+
+
 const verifblanc = (cell) => {
     const rowIndex = cell.parentElement.rowIndex;
     const cellIndex = cell.cellIndex;
@@ -73,6 +81,8 @@ const verifblanc = (cell) => {
         return false;
     }
 };
+// fonction pour vérifier si une case blanche a 3 voisines
+
 
 const updateGrille = () => {
     let grilleIntermediaire = [];
@@ -104,6 +114,8 @@ const updateGrille = () => {
     tour.innerHTML = `Tour : ${nombreTour}`;
 };
 
+// fonction pour utiliser nos deux fonctions pour case noire et blanche, les stocker dans un array intermediare, puis ensuite parcourir l'array intermediaire pour mettre les changements sur notre grille
+
 
 
 const grillev = genererTableau();
@@ -115,6 +127,8 @@ document.querySelectorAll("td").forEach((td) => {
     });
 });
 
+//fonction  pour que l'user clique sur les cases et les mette en noir
+
 reset.addEventListener("click", () => {
     document.querySelectorAll("td").forEach((td) => {
         if (td.style.backgroundColor) {
@@ -125,6 +139,12 @@ reset.addEventListener("click", () => {
     tour.innerHTML = `Tour : ${nombreTour}`;
 });
 
+//fonction reset pour tout réinitialiser 
+
+
 start.addEventListener("click", () => {
     setInterval(updateGrille, 200)
 });
+
+
+//fonction pour start avec une intervale de 200 milisecondes (2 secondes)
